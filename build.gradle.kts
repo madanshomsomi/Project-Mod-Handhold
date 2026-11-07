@@ -23,6 +23,11 @@ repositories {
 loom {
 	splitEnvironmentSourceSets()
 
+	mixin {
+		useLegacyMixinAp.set(true)
+		defaultRefmapName.set("handhold.refmap.json")
+	}
+
 	mods {
 		register("handhold") {
 			sourceSet(sourceSets.main.get())
@@ -47,9 +52,11 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${providers.gradleProperty("fabric_kotlin_version").get()}")
+	annotationProcessor("net.fabricmc:sponge-mixin:0.17.4+mixin.0.8.7")
+    add("clientAnnotationProcessor", "net.fabricmc:sponge-mixin:0.17.4+mixin.0.8.7")
 }
 
-val modSourceFiles = fileTree("src")
+val modSourceFiles = files(fileTree("src"), "build.gradle.kts", "gradle.properties")
 val modVersionStateFile = layout.projectDirectory.file(".gradle/handhold-version.properties")
 val prepareModVersion = tasks.register<PrepareModVersionTask>("prepareModVersion") {
 	sourceFiles.from(modSourceFiles)
@@ -103,6 +110,8 @@ java {
 tasks.jar {
 	val projectName = project.name
 	inputs.property("projectName", projectName)
+
+	from(sourceSets.getByName("client").output)
 
 	from("LICENSE") {
 		rename { "${it}_$projectName" }

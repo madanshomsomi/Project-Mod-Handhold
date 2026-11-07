@@ -9,7 +9,7 @@ A Fabric mod for Minecraft 1.21.11 that lets players request to hold hands. Once
 - `/handhold deny [player]` — decline the current request, optionally only if it came from that player.
 - `/handhold release` — release an active handhold. Either player can use this command.
 
-Requests expire after 60 seconds. Both players must be in the same dimension to accept. The following player stays beside the requesting player, on the left or right side; the link ends if either player disconnects or they end up in different dimensions.
+Requests expire after 60 seconds. Both players must be in the same dimension to accept, but there is no distance limit: after accepting, the follower approaches the leader before taking a consistent left or right side, slightly behind. Any player may have one leader and multiple followers, allowing a chain or branching group; requests that would create a cycle are rejected. Follow motion is smoothed and collision-aware, and the follower's position is synchronized to their client. Players must install Handhold on both the server and their Fabric client: while following, local movement keys are suppressed so client prediction cannot fight the server-controlled movement. Holding a movement key away from a nearby leader releases the hold; either player can also use `/handhold release`. Vertical following is limited to shared swimming or airborne movement so a grounded follower keeps walking on the terrain; followers jump when their leader jumps. The follower also smoothly matches the leader's yaw and pitch. The hold ends if either player disconnects or they end up in different dimensions.
 
 ## Development
 

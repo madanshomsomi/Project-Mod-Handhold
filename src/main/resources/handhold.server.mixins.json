@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"package": "com.example.mixin",
+	"refmap": "handhold.refmap.json",
+	"compatibilityLevel": "JAVA_21",
+	"server": [
+		"FollowerMovementMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
