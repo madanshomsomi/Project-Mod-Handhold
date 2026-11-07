@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "handhold",
+	"version": "${version}",
+	"name": "Handhold",
+	"description": "Send requests to hold hands and follow another player.",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "",
+		"sources": ""
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/template-mod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "com.example.TemplateMod",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			{
+				"value": "com.example.client.TemplateModClient",
+				"adapter": "kotlin"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"value": "com.example.client.TemplateModDataGenerator",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	}
+}
