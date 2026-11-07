@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "com.example.client.mixin",
+	"refmap": "client-handhold.refmap.json",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"KeyboardInputMixin",
+		"ClientInputAccessor"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
